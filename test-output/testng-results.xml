@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="3996" started-at="2020-05-01T09:55:32 IST" finished-at="2020-05-01T09:55:36 IST">
+  <suite name="Default suite" duration-ms="10204" started-at="2020-05-03T08:16:57 IST" finished-at="2020-05-03T08:17:07 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="3996" started-at="2020-05-01T09:55:32 IST" finished-at="2020-05-01T09:55:36 IST">
+    <test name="Default test" duration-ms="10204" started-at="2020-05-03T08:16:57 IST" finished-at="2020-05-03T08:17:07 IST">
       <class name="com.api.test.TestApi_01">
-        <test-method status="PASS" signature="getApiResponse()[pri:0, instance:com.api.test.TestApi_01@5e853265]" name="getApiResponse" duration-ms="3930" started-at="2020-05-01T09:55:32 IST" finished-at="2020-05-01T09:55:36 IST">
+        <test-method status="PASS" signature="getApiResponseWithoutUsingUtils()[pri:0, instance:com.api.test.TestApi_01@67205a84]" name="getApiResponseWithoutUsingUtils" duration-ms="6854" started-at="2020-05-03T08:16:57 IST" finished-at="2020-05-03T08:17:04 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getApiResponse -->
+        </test-method> <!-- getApiResponseWithoutUsingUtils -->
+        <test-method status="PASS" signature="getCallUsingUtils()[pri:0, instance:com.api.test.TestApi_01@67205a84]" name="getCallUsingUtils" duration-ms="439" started-at="2020-05-03T08:17:04 IST" finished-at="2020-05-03T08:17:05 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getCallUsingUtils -->
+        <test-method status="PASS" signature="postCallUsingUtils()[pri:0, instance:com.api.test.TestApi_01@67205a84]" name="postCallUsingUtils" duration-ms="2794" started-at="2020-05-03T08:17:05 IST" finished-at="2020-05-03T08:17:07 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postCallUsingUtils -->
       </class> <!-- com.api.test.TestApi_01 -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

@@ -1,11 +1,15 @@
 package com.api.test;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import com.api.utils.RestAssuredUtils;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -13,13 +17,14 @@ import io.restassured.specification.RequestSpecification;
 
 public class TestApi_01 {
 
+	private RestAssuredUtils restUtils = new RestAssuredUtils();
 	public String host = "http://ergast.com";
 	public String path = "/api/f1/2008/1.json";
 	SoftAssert softAssert = new SoftAssert();
 	// Calling GET method and validating the response
 
-	@Test
-	public void getApiResponse() {
+	@Test(enabled = true)
+	public void getApiResponseWithoutUsingUtils() {
 		RestAssured.baseURI = host + path;
 		RequestSpecification httprequest = RestAssured.given();
 		// header
@@ -88,6 +93,34 @@ public class TestApi_01 {
 		softAssert.assertEquals(races.get("date"), "2008-03-16");
 		softAssert.assertEquals(races.get("time"), "04:30:00Z");
 
+	}
+	
+	@Test(enabled =true)
+	public void getCallUsingUtils() {
+		String baseUri = host+path;
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Content-Type", "application/json");
+		Response response = restUtils.callGet(baseUri, headers, null);
+		System.out.println(response.getBody().asString());
+		//To validate response
+		
+	}
+	
+	@Test
+	public void postCallUsingUtils() {
+		String url = "http://bookstore.toolsqa.com/Account/v1/GenerateToken";
+		String uname= "anushahhhhhh";
+		String pass= "Anu@1222123";
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Content-Type", "application/json");
+		headers.put("Connection", "keep-alive");
+		Map<String, String> requestBody = new HashMap<String, String>();
+		requestBody.put("userName", uname);
+		requestBody.put("password", pass);
+		Response response = restUtils.callPost(url, headers, null, requestBody);
+		System.out.println(response.getBody().asString());
+		
+		
 	}
 
 }
