@@ -1,15 +1,30 @@
 package com.api.test;
 
+import java.io.IOException;
+
+/**
+ * 
+ * @author sudip.majumdar
+ * 
+ */
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.api.utils.GenerateTokenDTO;
+import com.api.utils.GenerateTokenInputDTO;
 import com.api.utils.RestAssuredUtils;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -94,23 +109,23 @@ public class TestApi_01 {
 		softAssert.assertEquals(races.get("time"), "04:30:00Z");
 
 	}
-	
-	@Test(enabled =true)
+
+	@Test(enabled = true)
 	public void getCallUsingUtils() {
-		String baseUri = host+path;
+		String baseUri = host + path;
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("Content-Type", "application/json");
-		Response response = restUtils.callGet(baseUri, headers, null);
+		Response response = restUtils.callGet(baseUri, headers, null, null);
 		System.out.println(response.getBody().asString());
-		//To validate response
-		
+		// To validate response
+
 	}
-	
-	@Test
-	public void postCallUsingUtils() {
+
+	@Test(enabled = true)
+	public void postCallUsingUtils() throws JsonParseException, JsonMappingException, IOException {
 		String url = "http://bookstore.toolsqa.com/Account/v1/GenerateToken";
-		String uname= "anushahhhhhh";
-		String pass= "Anu@1222123";
+		String uname = "anushahhhhhh";
+		String pass = "Anu@1222123";
 		Map<String, String> headers = new HashMap<String, String>();
 		headers.put("Content-Type", "application/json");
 		headers.put("Connection", "keep-alive");
@@ -120,7 +135,42 @@ public class TestApi_01 {
 		Response response = restUtils.callPost(url, headers, null, requestBody);
 		System.out.println(response.getBody().asString());
 		
+		//Deserialize the json response into a DTO/POJO class
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		GenerateTokenDTO mappedResponse = mapper.readValue(response.getBody().asString(), GenerateTokenDTO.class);
+		System.out.println(mappedResponse.getToken());
+		System.out.println(mappedResponse.getExpires());
+		System.out.println(mappedResponse.getResult());
+		System.out.println(mappedResponse.getStatus());
 		
+		//Validating the response
+		softAssert.assertNotNull(mappedResponse.getToken(), "Token value is coming as null");
+		softAssert.assertNotNull(mappedResponse.getExpires(), "Expires key is coming as null");
+		softAssert.assertEquals(mappedResponse.getResult(), "User authorized successfully.");
+		softAssert.assertEquals(mappedResponse.getStatus(), "Success");
+		
+
+	}
+	
+	@Test(dataProvider = "dpInputs", enabled = true)
+	public void postCallUsingSetOfData(GenerateTokenInputDTO request) {
+		
+		String url = "http://bookstore.toolsqa.com/Account/v1/GenerateToken";
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Content-Type", "application/json");
+		headers.put("Connection", "keep-alive");
+		Response response = restUtils.callPost(url, headers, null, request);
+		System.out.println(response.getBody().asString());
+		
+		
+	}
+	
+	@DataProvider(name = "dpInputs")
+	public Object[][] dpForInputs(){
+		return new Object[][] {
+			{new GenerateTokenInputDTO("anushahhhhhh", "Anu@1222123")}
+		};
 	}
 
 }
