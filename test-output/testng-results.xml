@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="10204" started-at="2020-05-03T08:16:57 IST" finished-at="2020-05-03T08:17:07 IST">
+  <suite name="Default suite" duration-ms="4932" started-at="2020-05-03T10:55:17 IST" finished-at="2020-05-03T10:55:22 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="10204" started-at="2020-05-03T08:16:57 IST" finished-at="2020-05-03T08:17:07 IST">
+    <test name="Default test" duration-ms="4932" started-at="2020-05-03T10:55:17 IST" finished-at="2020-05-03T10:55:22 IST">
       <class name="com.api.test.TestApi_01">
-        <test-method status="PASS" signature="getApiResponseWithoutUsingUtils()[pri:0, instance:com.api.test.TestApi_01@67205a84]" name="getApiResponseWithoutUsingUtils" duration-ms="6854" started-at="2020-05-03T08:16:57 IST" finished-at="2020-05-03T08:17:04 IST">
+        <test-method status="PASS" signature="getApiResponseWithoutUsingUtils()[pri:0, instance:com.api.test.TestApi_01@10bbd20a]" name="getApiResponseWithoutUsingUtils" duration-ms="3142" started-at="2020-05-03T10:55:17 IST" finished-at="2020-05-03T10:55:20 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getApiResponseWithoutUsingUtils -->
-        <test-method status="PASS" signature="getCallUsingUtils()[pri:0, instance:com.api.test.TestApi_01@67205a84]" name="getCallUsingUtils" duration-ms="439" started-at="2020-05-03T08:17:04 IST" finished-at="2020-05-03T08:17:05 IST">
+        <test-method status="PASS" signature="getCallUsingUtils()[pri:0, instance:com.api.test.TestApi_01@10bbd20a]" name="getCallUsingUtils" duration-ms="395" started-at="2020-05-03T10:55:20 IST" finished-at="2020-05-03T10:55:20 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getCallUsingUtils -->
-        <test-method status="PASS" signature="postCallUsingUtils()[pri:0, instance:com.api.test.TestApi_01@67205a84]" name="postCallUsingUtils" duration-ms="2794" started-at="2020-05-03T08:17:05 IST" finished-at="2020-05-03T08:17:07 IST">
+        <test-method status="PASS" signature="postCallUsingSetOfData(com.api.utils.GenerateTokenInputDTO)[pri:0, instance:com.api.test.TestApi_01@10bbd20a]" name="postCallUsingSetOfData" duration-ms="809" started-at="2020-05-03T10:55:20 IST" data-provider="dpInputs" finished-at="2020-05-03T10:55:21 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[com.api.utils.GenerateTokenInputDTO@47404bea]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postCallUsingSetOfData -->
+        <test-method status="PASS" signature="postCallUsingUtils()[pri:0, instance:com.api.test.TestApi_01@10bbd20a]" name="postCallUsingUtils" duration-ms="519" started-at="2020-05-03T10:55:21 IST" finished-at="2020-05-03T10:55:22 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postCallUsingUtils -->

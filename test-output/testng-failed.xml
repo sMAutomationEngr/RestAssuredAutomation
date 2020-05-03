@@ -5,7 +5,7 @@
     <classes>
       <class name="com.api.test.TestApi_01">
         <methods>
-          <include name="getCallUsingUtils"/>
+          <include name="postCallUsingUtils"/>
         </methods>
       </class> <!-- com.api.test.TestApi_01 -->
     </classes>
